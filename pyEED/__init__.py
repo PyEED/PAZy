@@ -1,4 +1,4 @@
 import os
 
-__URL__ = "git://github.com/PyEED/pyeed-data-model.git"
+__URL__ = "git://github.com/PyEED/PAZy.git"
 __COMMIT__ = ""

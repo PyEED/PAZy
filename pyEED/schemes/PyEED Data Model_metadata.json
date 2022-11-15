@@ -10,7 +10,7 @@
       "amino_acid_sequence": {
         "description": "The amino acid sequence of the protein sequence object."
       },
-      "nr_id": {
+      "ncbi_id": {
         "description": "Identifier for the NCBI NR database"
       },
       "uniprot_id": {
@@ -22,6 +22,10 @@
       },
       "organism": {
         "description": "Corresponding organism"
+      },
+      "substrate": {
+        "description": "Name of plastics substrate that the protein is acting on.",
+        "multiple": "True"
       },
       "domain": {
         "description": "Domain specification",
@@ -35,7 +39,7 @@
         "multiple": "True"
       },
       "annotation": {
-        "description": "Position-wise annotation of the amino acid seqeunce",
+        "description": "Position-wise annotation of the amino acid sequence",
         "multiple": "True"
       }
     },
@@ -43,6 +47,9 @@
   },
   "Organism": {
     "attributes": {
+      "name": {
+        "description": "Systematic name of the organism."
+      },
       "ncbi_taxonomy_id": {
         "description": "NCBI Taxonomy ID to identify the organism"
       }

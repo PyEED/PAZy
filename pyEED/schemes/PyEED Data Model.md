@@ -8,10 +8,11 @@ classDiagram
     class ProteinSequence {
         +string name*
         +string amino_acid_sequence*
-        +string nr_id
+        +string ncbi_id
         +string uniprot_id
         +string[0..*] pdb_id
         +Organism organism
+        +string[0..*] substrate
         +Domain[0..*] domain
         +string reference_sequence
         +Equivalence[0..*] equivalence
@@ -19,7 +20,8 @@ classDiagram
     }
     
     class Organism {
-        +string ncbi_taxonomy_id*
+        +string name*
+        +integer ncbi_taxonomy_id
     }
     
     class Domain {

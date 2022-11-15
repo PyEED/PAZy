@@ -1,6 +1,7 @@
 import sdRDM
 
 from typing import Optional, Union
+from typing import Optional
 from pydantic import PrivateAttr
 from pydantic import Field
 from sdRDM.base.listplus import ListPlus
@@ -15,18 +16,14 @@ class Organism(sdRDM.DataModel):
         xml="@id",
     )
 
-    name: str = Field(
-        ..., description="Name of the organism"
-    )
-    
+    name: str = Field(..., description="Systematic name of the organism.")
+
     ncbi_taxonomy_id: Optional[int] = Field(
-        ..., description="NCBI Taxonomy ID to identify the organism"
+        description="NCBI Taxonomy ID to identify the organism", default=None
     )
 
-    __repo__: Optional[str] = PrivateAttr(
-        default="git://github.com/PyEED/pyeed-data-model.git"
-    )
+    __repo__: Optional[str] = PrivateAttr(default="git://github.com/PyEED/PAZy.git")
 
     __commit__: Optional[str] = PrivateAttr(
-        default="047f17317fa860206980a47dc3790cbc3204f343"
+        default="da1bbbaef7476b8666789f8a8731b6fb932541a0"
     )
