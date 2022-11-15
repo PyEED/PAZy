@@ -26,5 +26,5 @@ class DNASequence(sdRDM.DataModel):
     __repo__: Optional[str] = PrivateAttr(default="git://github.com/PyEED/PAZy.git")
 
     __commit__: Optional[str] = PrivateAttr(
-        default="30cee84303c1a827fca1090199237a6ea2be0e08"
+        default="b54d01b57969721748c3250effe8d2f0413d7783"
     )
