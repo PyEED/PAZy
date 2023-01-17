@@ -32,7 +32,7 @@ PyEED is a Python-encoded data model of an Enzyme Engineering Database. It suppo
   - Description: Position-wise annotation of the amino acid sequence
   - Multiple: True
 - __substrate__
-  - Type: [Substrate] (#Substrate)
+  - Type: [Substrate](#Substrate)
   - Description: Substrate that protein is active on
   - Multiple: True
 - __reference__
