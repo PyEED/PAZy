@@ -20,32 +20,31 @@ PyEED is a Python-encoded data model of an Enzyme Engineering Database. It suppo
   - Type: string
   - Description: Identifier for the PDB database
   - Multiple: True
-- __organism__
+- __organism_id__
   - Type: [Organism](#Organism)
   - Description: Corresponding organism 
-- __substrate__
-  - Type: string
-  - Description: Name of plastics substrate that the protein is acting on.
-  - Multiple: True
 - __domain__
   - Type: [Domain](#Domain)
   - Description: Domain specification
-  - Multiple: True
-- __reference_sequence__
-  - Type: string
-  - Description: Identifier of the sequence used as reference
-- __equivalence__
-  - Type: [Equivalence](#Equivalence)
-  - Description: Positions where the given sequence is equivalent to the reference
   - Multiple: True
 - __annotation__
   - Type: [Annotation](#Annotation)
   - Description: Position-wise annotation of the amino acid sequence
   - Multiple: True
+- __substrate__
+  - Type: [Substrate] (#Substrate)
+  - Description: Substrate that protein is active on
+  - Multiple: True
+- __reference__
+  - Type: [Reference](#Reference)
+  - Description: Corresponding publication
+  - Multiple: True
+
+
 
 ### Organism
 
-- __name*__
+- __scientific_name*__
   - Type: string
   - Description: Systematic name of the organism.
 - __ncbi_taxonomy_id__
@@ -64,14 +63,6 @@ PyEED is a Python-encoded data model of an Enzyme Engineering Database. It suppo
   - Type: integer
   - Description: Position in the sequence where the domain ends
 
-### Equivalence
-
-- __reference_position*__
-  - Type: integer
-  - Description: Equivalent position in the reference sequence
-- __sequence_position*__
-  - Type: integer
-  - Description: Position that is equivalent to the reference sequence position that is also given
   
 ### Annotation
 
@@ -88,5 +79,31 @@ PyEED is a Python-encoded data model of an Enzyme Engineering Database. It suppo
 ### DNASequence
 
 - __protein_sequence_id*__
-  - Type: string
+  - Type: [ProteinSequence](#proteinsequence)
   - Description: Reference to the corresponding protein sequence to which this DNA sequence translates 
+
+
+### Substrate
+
+- __substrate*__
+  - Type: string
+  - Description: Name of substrate
+- __source__
+  - Type: string
+  - Description: Fossil-fuel or renewable resource based polymer
+- __abbreviation*__
+  - Type: string
+  - Description: Abbreviation of substrate
+
+
+### Reference
+
+- __author*__
+  - Type: string
+  - Description: First author of publication 
+- __year__
+  - Type: integer
+  - Description: Year of publication
+- __doi__
+  - Type: string
+  - Description: DOI of publication
