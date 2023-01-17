@@ -20,26 +20,23 @@
         "description": "Identifier for the PDB database",
         "multiple": "True"
       },
-      "organism": {
+      "organism_id": {
         "description": "Corresponding organism"
-      },
-      "substrate": {
-        "description": "Name of plastics substrate that the protein is acting on.",
-        "multiple": "True"
       },
       "domain": {
         "description": "Domain specification",
         "multiple": "True"
       },
-      "reference_sequence": {
-        "description": "Identifier of the sequence used as reference"
-      },
-      "equivalence": {
-        "description": "Positions where the given sequence is equivalent to the reference",
-        "multiple": "True"
-      },
       "annotation": {
         "description": "Position-wise annotation of the amino acid sequence",
+        "multiple": "True"
+      },
+      "substrate": {
+        "description": "Substrate that protein is active on",
+        "multiple": "True"
+      },
+      "reference": {
+        "description": "Corresponding publication",
         "multiple": "True"
       }
     },
@@ -47,7 +44,7 @@
   },
   "Organism": {
     "attributes": {
-      "name": {
+      "scientific_name": {
         "description": "Systematic name of the organism."
       },
       "ncbi_taxonomy_id": {
@@ -70,17 +67,6 @@
     },
     "docstring": null
   },
-  "Equivalence": {
-    "attributes": {
-      "reference_position": {
-        "description": "Equivalent position in the reference sequence"
-      },
-      "sequence_position": {
-        "description": "Position that is equivalent to the reference sequence position that is also given"
-      }
-    },
-    "docstring": null
-  },
   "Annotation": {
     "attributes": {
       "start_position": {
@@ -99,6 +85,34 @@
     "attributes": {
       "protein_sequence_id": {
         "description": "Reference to the corresponding protein sequence to which this DNA sequence translates"
+      }
+    },
+    "docstring": null
+  },
+  "Substrate": {
+    "attributes": {
+      "substrate": {
+        "description": "Name of substrate"
+      },
+      "source": {
+        "description": "Fossil-fuel or renewable resource based polymer"
+      },
+      "abbreviation": {
+        "description": "Abbreviation of substrate"
+      }
+    },
+    "docstring": null
+  },
+  "Reference": {
+    "attributes": {
+      "author": {
+        "description": "First author of publication"
+      },
+      "year": {
+        "description": "Year of publication"
+      },
+      "doi": {
+        "description": "DOI of publication"
       }
     },
     "docstring": null

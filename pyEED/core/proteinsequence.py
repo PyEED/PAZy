@@ -9,8 +9,9 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature, IDGenerator
 from .annotation import Annotation
 from .domain import Domain
-from .equivalence import Equivalence
 from .organism import Organism
+from .reference import Reference
+from .substrate import Substrate
 
 
 @forge_signature
@@ -35,30 +36,12 @@ class ProteinSequence(sdRDM.DataModel):
         description="Identifier for the PDB database", default_factory=ListPlus
     )
 
-    organism: Optional[Organism] = Field(
-        description="Corresponding organism", default=None
-    )
-
     domain: List[Domain] = Field(
         description="Domain specification", default_factory=ListPlus
     )
 
-    reference_sequence: Optional[str] = Field(
-        description="Identifier of the sequence used as reference", default=None
-    )
-
-    equivalence: List[Equivalence] = Field(
-        description="Positions where the given sequence is equivalent to the reference",
-        default_factory=ListPlus,
-    )
-
     ncbi_id: Optional[str] = Field(
         description="Identifier for the NCBI NR database", default=None
-    )
-
-    substrate: List[str] = Field(
-        description="Name of plastics substrate that the protein is acting on.",
-        default_factory=ListPlus,
     )
 
     annotation: List[Annotation] = Field(
@@ -66,10 +49,22 @@ class ProteinSequence(sdRDM.DataModel):
         default_factory=ListPlus,
     )
 
+    organism_id: Optional[Organism] = Field(
+        description="Corresponding organism", default=None
+    )
+
+    substrate: List[Substrate] = Field(
+        description="Substrate that protein is active on", default_factory=ListPlus
+    )
+
+    reference: List[Reference] = Field(
+        description="Corresponding publication", default_factory=ListPlus
+    )
+
     __repo__: Optional[str] = PrivateAttr(default="git://github.com/PyEED/PAZy.git")
 
     __commit__: Optional[str] = PrivateAttr(
-        default="b54d01b57969721748c3250effe8d2f0413d7783"
+        default="80098c279c240bde2b6713b7880b8627c1aad571"
     )
 
     def add_to_domain(
@@ -107,33 +102,6 @@ class ProteinSequence(sdRDM.DataModel):
         domain = [Domain(**params)]
         self.domain = self.domain + domain
 
-    def add_to_equivalence(
-        self, reference_position: int, sequence_position: int, id: Optional[str] = None
-    ) -> None:
-        """
-        Adds an instance of 'Equivalence' to the attribute 'equivalence'.
-
-        Args:
-
-
-            id (str): Unique identifier of the 'Equivalence' object. Defaults to 'None'.
-
-
-            reference_position (int): Equivalent position in the reference sequence.
-
-
-            sequence_position (int): Position that is equivalent to the reference sequence position that is also given.
-        """
-
-        params = {
-            "reference_position": reference_position,
-            "sequence_position": sequence_position,
-        }
-        if id is not None:
-            params["id"] = id
-        equivalence = [Equivalence(**params)]
-        self.equivalence = self.equivalence + equivalence
-
     def add_to_annotation(
         self,
         start_position: int,
@@ -168,3 +136,69 @@ class ProteinSequence(sdRDM.DataModel):
             params["id"] = id
         annotation = [Annotation(**params)]
         self.annotation = self.annotation + annotation
+
+    def add_to_substrate(
+        self,
+        substrate: str,
+        abbreviation: str,
+        source: Optional[str] = None,
+        id: Optional[str] = None,
+    ) -> None:
+        """
+        Adds an instance of 'Substrate' to the attribute 'substrate'.
+
+        Args:
+
+
+            id (str): Unique identifier of the 'Substrate' object. Defaults to 'None'.
+
+
+            substrate (str): Name of substrate.
+
+
+            abbreviation (str): Abbreviation of substrate.
+
+
+            source (Optional[str]): Fossil-fuel or renewable resource based polymer. Defaults to None
+        """
+
+        params = {
+            "substrate": substrate,
+            "abbreviation": abbreviation,
+            "source": source,
+        }
+        if id is not None:
+            params["id"] = id
+        substrate = [Substrate(**params)]
+        self.substrate = self.substrate + substrate
+
+    def add_to_reference(
+        self,
+        author: str,
+        year: Optional[int] = None,
+        doi: Optional[str] = None,
+        id: Optional[str] = None,
+    ) -> None:
+        """
+        Adds an instance of 'Reference' to the attribute 'reference'.
+
+        Args:
+
+
+            id (str): Unique identifier of the 'Reference' object. Defaults to 'None'.
+
+
+            author (str): First author of publication.
+
+
+            year (Optional[int]): Year of publication. Defaults to None
+
+
+            doi (Optional[str]): DOI of publication. Defaults to None
+        """
+
+        params = {"author": author, "year": year, "doi": doi}
+        if id is not None:
+            params["id"] = id
+        reference = [Reference(**params)]
+        self.reference = self.reference + reference

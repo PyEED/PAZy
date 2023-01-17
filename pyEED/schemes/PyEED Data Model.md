@@ -2,8 +2,10 @@
 classDiagram
     ProteinSequence *-- Organism
     ProteinSequence *-- Domain
-    ProteinSequence *-- Equivalence
     ProteinSequence *-- Annotation
+    ProteinSequence *-- Substrate
+    ProteinSequence *-- Reference
+    DNASequence *-- ProteinSequence
     
     class ProteinSequence {
         +string name*
@@ -11,16 +13,15 @@ classDiagram
         +string ncbi_id
         +string uniprot_id
         +string[0..*] pdb_id
-        +Organism organism
-        +string[0..*] substrate
+        +Organism organism_id
         +Domain[0..*] domain
-        +string reference_sequence
-        +Equivalence[0..*] equivalence
         +Annotation[0..*] annotation
+        +Substrate[0..*] substrate
+        +Reference[0..*] reference
     }
     
     class Organism {
-        +string name*
+        +string scientific_name*
         +integer ncbi_taxonomy_id
     }
     
@@ -30,11 +31,6 @@ classDiagram
         +integer end_position*
     }
     
-    class Equivalence {
-        +integer reference_position*
-        +integer sequence_position*
-    }
-    
     class Annotation {
         +integer start_position*
         +integer end_position
@@ -42,7 +38,19 @@ classDiagram
     }
     
     class DNASequence {
-        +string protein_sequence_id*
+        +ProteinSequence protein_sequence_id*
+    }
+    
+    class Substrate {
+        +string substrate*
+        +string source
+        +string abbreviation*
+    }
+    
+    class Reference {
+        +string author*
+        +integer year
+        +string doi
     }
     
 ```

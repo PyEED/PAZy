@@ -42,5 +42,5 @@ class Annotation(sdRDM.DataModel):
     __repo__: Optional[str] = PrivateAttr(default="git://github.com/PyEED/PAZy.git")
 
     __commit__: Optional[str] = PrivateAttr(
-        default="b54d01b57969721748c3250effe8d2f0413d7783"
+        default="80098c279c240bde2b6713b7880b8627c1aad571"
     )
